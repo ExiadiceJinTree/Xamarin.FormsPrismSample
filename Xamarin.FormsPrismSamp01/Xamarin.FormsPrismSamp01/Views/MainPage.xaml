@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xamarin.FormsPrismSamp01.Views.MainPage"
+             Title="{Binding Title}">
+
+    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Label Text="Welcome to Xamarin Forms and Prism!" />
+
+        <!--====================================================================================================
+          非MVVM手法
+        ====================================================================================================-->
+        <Label Text="========== 非MVVM手法 =========="/>
+        <!-- Name設定しアクセスする -->
+        <Label x:Name="ALabel" Text="AAA"/>
+        <!-- Clickイベント設定しCodeBehindで実装開始 -->
+        <Button x:Name="AButton" Text="Button A" Clicked="AButton_Clicked"/>
+        
+        <!--====================================================================================================
+          MVVM手法
+        ====================================================================================================-->
+        <Label Text="========== MVVM手法 =========="/>
+        <!-- Name設定せず、Binding設定する -->
+        <Label Text="{Binding BLabel}"/>
+        <!-- Clickイベント設定せず、CommandのBinding設定する -->
+        <Button Text="Button B" Command="{Binding BButtonClickCmd}"/>
+
+        <!-- MVVM手法での画面遷移 -->
+        <Button Text="To BPage" Command="{Binding NavigateToBPageCmd}"/>
+
+        <Button Text="Message" Command="{Binding MessageCmd}"/>
+    
+        <!-- Camera機能: MVVM手法でImageをBinding設定 -->
+        <Button Text="Camera起動" Command="{Binding InitCameraCmd}"/>
+        <Image Source="{Binding CameraImageSource}" WidthRequest="100" HeightRequest="100"/>
+    </StackLayout>
+</ContentPage>
